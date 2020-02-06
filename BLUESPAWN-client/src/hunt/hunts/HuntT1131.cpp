@@ -6,12 +6,12 @@
 
 using namespace Registry;
 
-namespace Hunts {
+namespace Hunts{
 	HuntT1131::HuntT1131(HuntRegister& record) : Hunt(record, L"T1131 - Authentication Package") {
-		dwSupportedScans = (DWORD) Aggressiveness::Cursory;
-		dwCategoriesAffected = (DWORD) Category::Configurations;
-		dwSourcesInvolved = (DWORD) DataSource::Registry;
-		dwTacticsUsed = (DWORD) Tactic::Persistence;
+		dwSupportedScans = ( DWORD) Aggressiveness::Cursory;
+		dwCategoriesAffected = ( DWORD) Category::Configurations;
+		dwSourcesInvolved = ( DWORD) DataSource::Registry;
+		dwTacticsUsed = ( DWORD) Tactic::Persistence;
 	}
 
 	int HuntT1131::ScanCursory(const Scope& scope, Reaction reaction){
@@ -24,7 +24,7 @@ namespace Hunts {
 		keys.emplace(LSA, CheckValues(LSA, {
 			{ L"Authentication Packages", RegistryType::REG_MULTI_SZ_T, okAuthPackages, false, CheckMultiSzSubset },
 			{ L"Notification Packages", RegistryType::REG_MULTI_SZ_T, okNotifPackages, false, CheckMultiSzSubset },
-		}));
+			}));
 
 		int detections = 0;
 		for(const auto& key : keys){
